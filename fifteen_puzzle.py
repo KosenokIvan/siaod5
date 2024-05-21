@@ -1,3 +1,4 @@
+import time
 from typing import List, Tuple
 from queue import PriorityQueue
 
@@ -118,6 +119,7 @@ if __name__ == '__main__':
     ]
     for pos in positions:
         print(pos)
+        start_time = time.time()
         if check_if_solvable(pos):
             solution = solve(pos)
             if solution:
@@ -127,4 +129,5 @@ if __name__ == '__main__':
                 print("No solution!")
         else:
             print("No solution!")
+        print("--- {0} ms ---".format(round((time.time() - start_time) * 1000)))
         print("=" * 45)
