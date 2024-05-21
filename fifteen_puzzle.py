@@ -24,7 +24,22 @@ def check_if_solved(state: Tuple[int, ...]):
 
 
 def heuristic(state: Tuple[int, ...]):
-    return sum([int(state[i] != 0 and state[i] != i + 1) for i in range(len(state))])
+    result = 0
+    size = int(len(state) ** .5)
+    for i in range(size):
+        for j in range(size):
+            if state[i*4 + j] == 0:
+                continue
+            is_found = False
+            for h in range(size):
+                for k in range(size):
+                    if h*4 + k == state[i*4 + j]:
+                        result += abs(h - i) + abs(j - k)
+                        is_found = True
+                        break
+                if is_found:
+                    break
+    return result
 
 
 def generate_states(state: Tuple[int, ...]):
